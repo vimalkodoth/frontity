@@ -3,6 +3,23 @@ import { connect, styled } from "frontity";
 import Link from "./link";
 import List from "./list";
 import FeaturedMedia from "./featured-media";
+import { DiscussionEmbed } from 'disqus-react';
+import {
+  EmailShareButton,
+  FacebookShareButton,
+  LinkedinShareButton,
+  RedditShareButton,
+  TelegramShareButton,
+  TwitterShareButton,
+  WhatsappShareButton,
+  EmailIcon,
+  FacebookIcon,
+  LinkedinIcon,
+  RedditIcon,
+  TelegramIcon,
+  TwitterIcon,
+  WhatsappIcon
+} from "react-share";
 
 const Post = ({ state, actions, libraries }) => {
   // Get information about the current URL.
@@ -16,7 +33,6 @@ const Post = ({ state, actions, libraries }) => {
 
   // Get the html2react component.
   const Html2React = libraries.html2react.Component;
-
   /**
    * Once the post has loaded in the DOM, prefetch both the
    * home posts and the list component so if the user visits
@@ -61,6 +77,26 @@ const Post = ({ state, actions, libraries }) => {
       <Content>
         <Html2React html={post.content.rendered} />
       </Content>
+      <Social>
+        <EmailShareButton url={`${state.frontity.url}${state.router.link}`}><EmailIcon size={32} round={true} /></EmailShareButton>
+        <FacebookShareButton url={`${state.frontity.url}${state.router.link}`}><FacebookIcon size={32} round={true} /></FacebookShareButton>
+        <LinkedinShareButton url={`${state.frontity.url}${state.router.link}`}><LinkedinIcon size={32} round={true} /></LinkedinShareButton>
+        <RedditShareButton url={`${state.frontity.url}${state.router.link}`}><RedditIcon size={32} round={true} /></RedditShareButton>
+        <TelegramShareButton url={`${state.frontity.url}${state.router.link}`}><TelegramIcon size={32} round={true} /></TelegramShareButton>
+        <TwitterShareButton url={`${state.frontity.url}${state.router.link}`}><TwitterIcon size={32} round={true} /></TwitterShareButton>
+        <WhatsappShareButton url={`${state.frontity.url}${state.router.link}`}><WhatsappIcon size={32} round={true} /></WhatsappShareButton>
+      </Social>
+      <DiscussionEmbed
+        shortname='post'
+        config={
+            {
+                url: `${state.frontity.url}${state.router.link}`,
+                identifier: String('post.id'),
+                title: post.title.rendered
+                //language: 'zh_TW' //e.g. for Traditional Chinese (Taiwan)
+            }
+        }
+      />
     </Container>
   ) : null;
 };
@@ -71,6 +107,13 @@ const Container = styled.div`
   max-width: 800px;
   margin: 0;
   padding: 24px;
+`;
+
+const Social = styled.div`
+  display:flex;
+  button {
+    margin-right:10px;
+  }
 `;
 
 const Title = styled.h1`
@@ -101,6 +144,7 @@ const Fecha = styled.p`
  * selectors to style that HTML.
  */
 const Content = styled.div`
+  text-align: justify;
   color: rgba(12, 17, 43, 0.8);
   word-break: break-word;
 

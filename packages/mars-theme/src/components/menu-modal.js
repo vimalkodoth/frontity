@@ -55,7 +55,7 @@ const MenuLink = styled(Link)`
   }
   /* styles for active link */
   &[aria-current="page"] {
-    color: yellow;
+    color: #000;
     font-weight: bold;
     /* border-bottom: 4px solid yellow; */
   }

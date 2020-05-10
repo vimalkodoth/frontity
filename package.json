@@ -18,7 +18,10 @@
     "@frontity/mars-theme": "./packages/mars-theme",
     "@frontity/tiny-router": "^1.1.1",
     "@frontity/wp-source": "^1.6.3",
+    "aws-serverless-express": "^3.3.8",
+    "disqus-react": "^1.0.8",
     "frontity": "^1.5.3",
+    "react-share": "^4.1.0",
     "serverless-http": "^2.3.2",
     "serverless-offline": "^6.1.4"
   }
