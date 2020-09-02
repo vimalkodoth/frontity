@@ -15,13 +15,17 @@ import PageError from "./page-error";
 const Theme = ({ state }) => {
   // Get information about the current URL.
   const data = state.source.get(state.router.link);
-
+  debugger;
   return (
     <>
       {/* Add some metatags to the <head> of the HTML. */}
       <Title />
       <Head>
         <meta name="description" content={state.frontity.description} />
+        <link
+          rel="manifest"
+          href={`${state.frontity.url}/web-app-manifest-11302.json`}
+        />
         <html lang="en" />
       </Head>
 
@@ -32,16 +36,16 @@ const Theme = ({ state }) => {
       {/* Add the main section. It renders a different component depending
       on the type of URL we are in. */}
       <Main>
-      <AsideContainer>
-        <Header />
-      </AsideContainer>
-      <ContentContainer>
-        <Switch>
-          <Loading when={data.isFetching} />
-          <List when={data.isArchive} />
-          <Post when={data.isPostType} />
-          <PageError when={data.isError} />
-        </Switch>
+        <AsideContainer>
+          <Header />
+        </AsideContainer>
+        <ContentContainer>
+          <Switch>
+            <Loading when={data.isFetching} />
+            <List when={data.isArchive} />
+            <Post when={data.isPostType} />
+            <PageError when={data.isError} />
+          </Switch>
         </ContentContainer>
       </Main>
     </>
@@ -66,23 +70,26 @@ const globalStyles = css`
 const AsideContainer = styled.div`
   flex: 1;
   color: #000;
-  border-right: 1px solid rgba(0,0,0,0.7);
+  border-right: 1px solid rgba(0, 0, 0, 0.7);
 `;
 
 const Main = styled.div`
   display: flex;
   align-items: stretch;
-  background-image: linear-gradient( 180deg,rgba(239, 240, 255, 0.23),rgba(66,174,228,0) );
+  background-image: linear-gradient(
+    180deg,
+    rgba(239, 240, 255, 0.23),
+    rgba(66, 174, 228, 0)
+  );
   height: 100vh;
   @media (max-width: 560px) {
-    flex-direction:column;
+    flex-direction: column;
   }
 `;
 
 const ContentContainer = styled.div`
-    @media (max-width: 560px) {
-      flex: 5;
-    }
-    flex: 3;
-
+  @media (max-width: 560px) {
+    flex: 5;
+  }
+  flex: 3;
 `;

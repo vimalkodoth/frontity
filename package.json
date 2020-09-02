@@ -22,7 +22,7 @@
     "disqus-react": "^1.0.8",
     "frontity": "^1.5.3",
     "react-share": "^4.1.0",
-    "serverless-http": "^2.3.2",
+    "serverless-http": "2.3.2",
     "serverless-offline": "^6.1.4"
   }
 }
