@@ -1,5 +1,8 @@
-'use strict';
-const sls = require('serverless-http');
-const app = require('./build/server');
+// lambda.js
+const awsServerlessExpress = require("aws-serverless-express");
+const app = require("./build/server.js").default;
+const server = awsServerlessExpress.createServer(app);
 
-module.exports.server = sls(app);
+exports.server = (event, context) => {
+  awsServerlessExpress.proxy(server, event, context);
+};
