@@ -7,6 +7,7 @@ import Post from "./post";
 import Loading from "./loading";
 import Title from "./title";
 import PageError from "./page-error";
+import OfflineIcon from "./offline";
 
 /**
  * Theme is the root React component of our theme. The one we will export
@@ -24,7 +25,7 @@ const Theme = ({ state }) => {
         <meta name="description" content={state.frontity.description} />
         <link
           rel="manifest"
-          href={`${state.frontity.url}/web-app-manifest-11302.json`}
+          href={`${state.frontity.url}web-app-manifest-11302.json`}
         />
         <html lang="en" />
       </Head>
@@ -40,12 +41,15 @@ const Theme = ({ state }) => {
           <Header />
         </AsideContainer>
         <ContentContainer>
-          <Switch>
-            <Loading when={data.isFetching} />
-            <List when={data.isArchive} />
-            <Post when={data.isPostType} />
-            <PageError when={data.isError} />
-          </Switch>
+          <Wrapper>
+            <OfflineIcon />
+            <Switch>
+              <Loading when={data.isFetching} />
+              <List when={data.isArchive} />
+              <Post when={data.isPostType} />
+              <PageError when={data.isError} />
+            </Switch>
+          </Wrapper>
         </ContentContainer>
       </Main>
     </>
@@ -54,6 +58,10 @@ const Theme = ({ state }) => {
 
 export default connect(Theme);
 
+const Wrapper = styled.div`
+  max-width: 800px;
+  position: relative;
+`;
 const globalStyles = css`
   body {
     margin: 0;
