@@ -5,7 +5,7 @@ function isOnline() {
     typeof window !== "undefined" &&
     typeof window.navigator !== "undefined"
   ) {
-    return !navigator.onLine;
+    return navigator.onLine;
   }
   return true;
 }

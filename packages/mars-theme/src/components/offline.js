@@ -6,11 +6,24 @@ import useOnlineStatus from "../hooks/useOnlineStatus";
 
 const OfflineIcon = () => {
   const { online } = useOnlineStatus();
-  return <OfflineNav show={online}></OfflineNav>;
+  if (!online) {
+    return <OfflineNav />;
+  }
+  return <OnlineNav />;
 };
 
 const OfflineNav = styled.div`
-  visibility: ${(props) => (props.show ? "hidden" : "visible")};
+  visibility: visible;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 55px;
+  height: 49px;
+  background: url(${offlineImage}) 0px 0px/55px 49px no-repeat;
+`;
+
+const OnlineNav = styled.div`
+  visibility: hidden;
   position: absolute;
   top: 10px;
   right: 10px;
