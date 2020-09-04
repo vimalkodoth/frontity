@@ -8,6 +8,14 @@ provider:
   stage: dev
   region: us-east-1
 
+plugins:
+  - "serverless-apigw-binary"
+
+custom:
+  apigwBinary:
+    types:
+      - "*/*"
+
 functions:
   app:
     handler: app.server # reference the file and exported method

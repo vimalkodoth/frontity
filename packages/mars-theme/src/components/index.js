@@ -8,7 +8,6 @@ import Loading from "./loading";
 import Title from "./title";
 import PageError from "./page-error";
 import OfflineIcon from "./offline";
-
 /**
  * Theme is the root React component of our theme. The one we will export
  * in roots.
@@ -16,7 +15,6 @@ import OfflineIcon from "./offline";
 const Theme = ({ state }) => {
   // Get information about the current URL.
   const data = state.source.get(state.router.link);
-  debugger;
   return (
     <>
       {/* Add some metatags to the <head> of the HTML. */}
@@ -27,6 +25,7 @@ const Theme = ({ state }) => {
           rel="manifest"
           href={`${state.frontity.url}web-app-manifest-11302.json`}
         />
+        <script type="text/javascript" src="/static/register.js" />
         <html lang="en" />
       </Head>
 
